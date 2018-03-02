@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Algorithm," />
 
 
 
@@ -79,14 +79,20 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta name="description" content="Given a 2d array, imagine it represents the blocks on the wall. 1 means there is a block and 0 means there isn’t.  The first line of blocks connected to the ceiling. The block could “pull” the block d">
+<meta name="keywords" content="Algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Algorithm: Blocks Connected to the Ceiling">
+<meta property="og:url" content="http://yoursite.com/2018/02/26/Algorithm-Blocks-Connected-to-the-Ceiling/index.html">
 <meta property="og:site_name" content="Alvin">
+<meta property="og:description" content="Given a 2d array, imagine it represents the blocks on the wall. 1 means there is a block and 0 means there isn’t.  The first line of blocks connected to the ceiling. The block could “pull” the block d">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-26T04:13:12.658Z">
+<meta property="og:image" content="https://i.imgur.com/82hMtCe.png">
+<meta property="og:updated_time" content="2018-03-02T00:10:22.333Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
+<meta name="twitter:title" content="Algorithm: Blocks Connected to the Ceiling">
+<meta name="twitter:description" content="Given a 2d array, imagine it represents the blocks on the wall. 1 means there is a block and 0 means there isn’t.  The first line of blocks connected to the ceiling. The block could “pull” the block d">
+<meta name="twitter:image" content="https://i.imgur.com/82hMtCe.png">
 
 
 
@@ -116,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/02/26/Algorithm-Blocks-Connected-to-the-Ceiling/"/>
 
 
 
 
 
-  <title>tags | Alvin</title>
+  <title>Algorithm: Blocks Connected to the Ceiling | Alvin</title>
   
 
 
@@ -227,40 +233,156 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/26/Algorithm-Blocks-Connected-to-the-Ceiling/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhiyong Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alvin">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                1 tag in total
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Algorithm/" style="font-size: 12px; color: #ccc">Algorithm</a>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">Algorithm: Blocks Connected to the Ceiling</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-26T18:24:46-05:00">
+                2018-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>Given a 2d array, imagine it represents the blocks on the wall. 1 means there is a block and 0 means there isn’t.  The first line of blocks connected to the ceiling. The block could “pull” the block down next to it, and it could also support the block left or right to it.When we remove one of the blocks, how many blocks left?</p>
+<p>For example, here is the matrix, there are total 11 blocks.</p>
+<p><img src="https://i.imgur.com/82hMtCe.png" alt="Example"></p>
+<p>remove matrix[1][3],  no other blocks drop except this one, return 10;</p>
+<p>remove matrix[2][1], matrix[2][2] and matrix[2][3] drop, return 8;</p>
+<p>Solution:</p>
+<p>This could be seen as a graph. The incoming edge of the node means it is  “supported” or “pulled” by its neighbor node.  There are three conditions:</p>
+<p>The indegree of a node is ZERO, which means there is no other nodes supporting it. It should drop.</p>
+<p>The indegree of a node is ONE, which means it could not support back to the node that supports itself. we should remove such outgoing edge. </p>
+<p>The indegree of a node is more than ONE, nothing happens.</p>
+<p>In the first two cases, we should also check its neighbor nodes.</p>
+<p><a href="https://github.com/hialvin/Algorithm-Study/blob/hidden/LeetCode/OA/src/google/CeilingSupport/BlocksConnectedToCeilingByXuan.java" target="_blank" rel="noopener">BFS version</a> </p>
+<p><a href="https://github.com/hialvin/Algorithm-Study/blob/hidden/LeetCode/OA/src/google/CeilingSupport/BlocksConnectedToCeilingByGuava.java" target="_blank" rel="noopener">DFS version</a> (guava required but more readable)</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/25/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 

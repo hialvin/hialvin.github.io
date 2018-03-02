@@ -1,0 +1,36 @@
+mutex = Semaphore(1)
+room1 = 0
+room2 = 0
+t1 = Semaphore(1)
+t2 = Semaphore(2)
+
+
+mutex.wait()
+    room1++
+mutex.wait()
+
+t1.wait()
+    mutex.wait()
+        room1--;
+        if (room1 == 0) {
+            mutex.signal()
+            t2.signal()
+        } else {
+            mutex.signal()
+            t1.signal()
+        }
+
+mutex.wait()
+    room2++
+mutex.wait()
+
+t2.wait()
+    mutex.wait()
+        room2--;
+        if (room2 == 0) {
+            mutex.signal()
+            t1.signal()
+        } else {
+            mutex.signal()
+            t2.signal()
+        }
